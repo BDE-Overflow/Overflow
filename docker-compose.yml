@@ -1,0 +1,46 @@
+version: '3'
+services:
+  database:
+    build:
+      ./database
+    environment:
+      - MYSQL_USER=${OVERFLOW_SQL_USER:-overflow}
+      - MYSQL_PASSWORD=${OVERFLOW_SQL_PASSWORD:-overflowpassword}
+      - MYSQL_DATABASE=${OVERFLOW_SQL_DATABASE:-overflow}
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    networks:
+      - app
+    ports:
+      - '3306:3306'
+
+  server:
+    build:
+      ./server
+    environment:
+      - HOST=80
+      - MYSQL_USER=${OVERFLOW_SQL_USER:-overflow}
+      - MYSQL_PASSWORD=${OVERFLOW_SQL_PASSWORD:-overflowpassword}
+      - MYSQL_DATABASE=${OVERFLOW_SQL_DATABASE:-overflow}
+      - MYSQL_HOST=${OVERFLOW_SQL_HOST:-database}
+      - JWT_SECRET=${OVERFLOW_JWT_SECRET:-overflowjwtsecret}
+      - USE_GCP=${OVERFLOW_USE_GCP:-FALSE}
+      - URL_SERVER=${OVERFLOW_API_URL_SERVER:-http://127.0.0.1:8080}
+      - FILES_FOLDER=${OVERFLOW_API_FILES_FOLDER:-./files/}
+      - GOOGLE_CLOUD_PROJECT_ID=${OVERFLOW_GOOGLE_CLOUD_PROJECT_ID:-bde-overflow}
+      - GOOGLE_CLOUD_KEYFILE=${OVERFLOW_GOOGLE_CLOUD_KEYFILE:-bde-overflow.json}
+      - BUCKET_NAME=${OVERFLOW_BUCKET_NAME:-bucket-bde-overflow}
+    networks:
+      - app
+    ports:
+      - '8080:80'
+
+  client:
+    build:
+      ./client
+    environment:
+      - REACT_APP_API_ADDRESS=${OVERFLOW_API_ADDRESS:-http://127.0.0.1:8080}
+    ports:
+      - '3000:80'
+
+networks:
+  app:

@@ -1,0 +1,53 @@
+#partnership-page {
+    overflow: hidden;
+}
+
+.partnership--carrousel {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 11.5vw;
+    height: 42.5vh;
+    z-index: 1;
+    position: relative;
+}
+
+.partnership--focused-text {
+    opacity: 0.1;
+    text-align: center;
+    font-size: 15vw;
+    white-space: nowrap;
+}
+
+.partnership--focused-text--container {
+    z-index: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.partnerchip-school--container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 87vh;
+}
+
+.partnerchip-school-svg {
+    transition: all 0.5s ease-out;
+    height: 8vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
+.partnerchip-school-svg--hover {
+    transition: all 0.1s ease-out;
+    height: 10vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
+.partnership-loading {
+    margin-top: 5vh;
+}

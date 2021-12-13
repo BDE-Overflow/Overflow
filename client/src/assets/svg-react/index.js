@@ -1,0 +1,6 @@
+export { default as Overflow } from './Overflow'
+export { default as SchoolEart } from './SchoolEart'
+export { default as SchoolEpitech } from './SchoolEpitech'
+export { default as SchoolIseg } from './SchoolIseg'
+export { default as TriangleOver } from './TriangleOver'
+export { default as Triangle } from './Triangle'
